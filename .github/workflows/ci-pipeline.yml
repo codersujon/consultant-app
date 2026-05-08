@@ -1,4 +1,4 @@
-name: Build Consultant App
+name: Consultant App CI Pipeline
 
 on:
   push:
@@ -6,9 +6,29 @@ on:
       - main
 
 jobs:
-  site-deploy:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Checkout Code
+      # Step 1: Checkout Repository
+      - name: Checkout Source Code
         uses: actions/checkout@v4
+
+      # Step 2: Node.js Setup
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+
+      # Step 3: Install Dependencies
+      - name: Install Dependencies
+        uses: npm Install
+      
+      # Step 4: Build Vue JS Application
+      - name: Build Application
+        uses: npm run build
+        
+      # Upload Build Artifact
+      - name: Upload Dist Folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: vue-build-files
+          path: dist
