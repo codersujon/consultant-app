@@ -3,7 +3,7 @@ name: Build Consultant App
 on:
   push:
     branches:
-      - develop
+      - main
 
 jobs:
   site-deploy:
